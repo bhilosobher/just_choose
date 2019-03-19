@@ -30,15 +30,15 @@ class Restaurant(models.Model):
     )
     # define another choice field for the restaurant: this one can take as many values as the cuisine tuple has below
     CUISINE_TYPES = (
-        ('indian', 'indian'),
-        ('italian', 'italian'),
-        ('mexican', 'mexican'),
-        ('spanish', 'spanish'),
-        ('chinese', 'chinese'),
-        ('kebab', 'kebab'),
-        ('greek', 'greek'),
-        ('japanese', 'japanese'),
-        ('american', 'american'),
+        ('indian', 'Indian'),
+        ('italian', 'Italian'),
+        ('mexican', 'Mexican'),
+        ('spanish', 'Spanish'),
+        ('chinese', 'Chinese'),
+        ('kebab', 'Kebab'),
+        ('greek', 'Greek'),
+        ('japanese', 'Japanese'),
+        ('american', 'American'),
         ('eclectic', 'eclectic'),
     )
 
@@ -102,10 +102,10 @@ class Menu(models.Model):
         max_length=10,
     )
     DIETARY_TYPE = (
-        ('vegan', 'vegan'),
-        ('vegetarian', 'vegetarian'),
-        ('halal', 'halal'),
-        ('kosher', 'kosher'),
+        ('vegan', 'Vegan'),
+        ('vegetarian', 'Vegetarian'),
+        ('halal', 'Halal'),
+        ('kosher', 'Kosher'),
         ('none', 'none'),
     )
     dietary_mentions = models.CharField(
@@ -118,17 +118,17 @@ class Menu(models.Model):
         ('nuts', 'nuts'),
         ('milk', 'milk'),
         ('gluten', 'gluten'),
-        ('glu+mi', 'gluten,milk'),
-        ('glu+nut', 'gluten,nuts'),
-        ('mi+nut', 'milk,nuts'),
-        ('glu+mi+nut', 'milk,nuts,gluten'),
+        ('glu+mi', 'gluten, milk'),
+        ('glu+nut', 'gluten, nuts'),
+        ('mi+nut', 'milk, nuts'),
+        ('glu+mi+nut', 'milk, nuts, gluten'),
         ('none', 'none')
     )
     allergy_warning = models.CharField(
         max_length=16,
         choices=ALLERGY_TYPE,
         default='none',
-        null=True,
+        blank=True,
     )
 
     def __str__(self):
