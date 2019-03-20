@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^login/$', views.login, name ='login'),
     url(r'^profile/$', views.myprofile, name ='myprofile'),
     url(r'^signup/$', views.signup, name ='signup'),
+	url(r'^restaurants/(?P<postcode>\w{1,50})/$', views.restaurants, name ='restaurants'),
+	url(r'^menus/(?P<restaurant>\w{1,50})/$', views.menus, name ='menus'),
  ]

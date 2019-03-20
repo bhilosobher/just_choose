@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from just_choose.models import Restaurant
+from just_choose.models import Menu
+from django.http import JsonResponse
+from django.core import serializers
 # Create your views here.
 
 
@@ -41,3 +45,14 @@ def myprofile (request):
 
 def signup (request):
     return HttpResponse("register!")
+
+
+def restaurants(request, postcode):
+    restaurants = Restaurant.objects.filter(address=postcode)
+    serialized_restaurants = serializers.serialize('json', restaurants)
+    return JsonResponse(serialized_restaurants, safe=False)
+	
+def menus(request, restaurant):
+    menus = Menu.objects.filter(restaurant__name=restaurant)
+    serialized_menus = serializers.serialize('json', menus)
+    return JsonResponse(serialized_menus, safe=False)
