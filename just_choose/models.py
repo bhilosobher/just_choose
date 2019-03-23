@@ -1,15 +1,15 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 
 class Restaurant(models.Model):
     # define a price range field for the Restaurant model; this field can only one of 4 values and is ££ by default
-    LOW = '£'
-    MODERATE = '££'
-    HIGH = '£££'
-    HIGHEST = '££££'
+    LOW = 1
+    MODERATE = 2
+    HIGH = 3
+    HIGHEST = 4
     # left side of the tuple is the value stored in the DB; right side is the text displayed to the user (i.e. in form)
     PRICE_RANGE_CHOICES = (
         (LOW, '£'),
@@ -17,8 +17,7 @@ class Restaurant(models.Model):
         (HIGH, '£££'),
         (HIGHEST, '££££'),
     )
-    budget_range = models.CharField(
-        max_length=4,
+    budget_range = models.IntegerField(
         choices=PRICE_RANGE_CHOICES,
         default=MODERATE,
         blank=False,
@@ -133,3 +132,27 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.name
+
+class Search(models.Model):
+    address = models.CharField(
+        max_length=8,
+        blank=False,
+    )
+    cuisine = models.CharField(
+        max_length=32,
+        choices=Restaurant.CUISINE_TYPES,
+        blank=True,
+    )
+    budget_range = models.IntegerField(
+        choices=Restaurant.PRICE_RANGE_CHOICES,
+        blank=True,
+    )
+    def __str__(self):
+        return '%s| %s| %s' % (self.address, self.cuisine, self.budget_range)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    searches = models.ManyToManyField(Search, blank=True)
+
+    def __str__(self):
+        return self.user.username

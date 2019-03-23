@@ -70,6 +70,11 @@
         <a href="" class="brand-logo center">
           <h3 id="title-h3"><i>JUST</i><strong> CHOOSE</strong>!</h3>
         </a>
+		{% if user.is_authenticated %}
+            <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
+        {% else %}
+            <p>Welcome, new user. Please log in.</p>
+        {% endif %}
         <a href="" class="sidenav-trigger" data-target="mobile-menu">
           <i class="material-icons">menu</i>
         </a>
@@ -110,22 +115,31 @@
         <div class="col s12 l5" id="where">
           <h3 class="header left darken-1 white-text" id="where_text" ><strong> Where are you?</strong></h3>
         </div>
-        <form action="POST">
           <div class="col s6 l4">
             <div class="input-field red darken-1" id="postcode_input">
               <i class="material-icons prefix">place</i>
-              <input type="text">
+              <input type="text" id="postcode">
               <label for="postcode_input" class="white-text">Enter you postcode here...</label>
             </div>
-            
           </div>
+		  <select class="input-field red darken-1" style="display: block;" id="cuisines">
+		      <option value="none">Choose cuisine</option>
+		      {% for cuisine in cuisines %}
+              <option value="{{ cuisine.0 }}">{{ cuisine.1 }}</option>
+			  {% endfor %}
+          </select>
+		  <select class="input-field red darken-1" style="display: block;" id="budget_range">
+		      <option value="none">Choose price range</option>
+		      {% for budget_range in budget_ranges %}
+              <option value="{{ budget_range.0 }}">{{ budget_range.1 }}</option>
+			  {% endfor %}
+          </select>
           <div class="col s2 l3">
               <div class="input-field">
-              <a href="#" id="search-button" class="right btn-large red darken-1 waves-effect waves-light  "><strong>Let's go!</strong></a>
+              <button id="search-button" class="right btn-large red darken-1 waves-effect waves-light  "><strong>Let's go!</strong></button>
             </div>
           </div>
       </div>
-      </form>
 
      
      
@@ -368,6 +382,12 @@
       });
       $('.tooltipped').tooltip();
       $('.scrollspy').scrollSpy();
+    });
+	$( "#search-button" ).click(function() {
+      var cuisine = $("#cuisines :selected").val();
+	  var budget_range = $("#budget_range :selected").val();
+	  var postcode = $("#postcode").val();
+	  window.location.href = '/just_choose/restaurants/' + postcode + '/' + cuisine + '/' + budget_range;
     });
   </script>
 </body>
