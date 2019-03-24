@@ -52,6 +52,10 @@ class Restaurant(models.Model):
         max_length=8,
         blank=False,
     )
+    
+    dine_in = models.BooleanField(default=False)
+	
+    take_away= models.BooleanField(default=False)
 
     # some restaurants may link their websites, others not
     website = models.URLField(

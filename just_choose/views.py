@@ -45,14 +45,14 @@ def helper (request):
 def myprofile (request):
     return HttpResponse("once logged in, view profile")
 
-def restaurants(request, postcode, cuisine, budget_range):
-    restaurants = Restaurant.objects.filter(address=postcode)
+def takeaway(request, postcode, cuisine, budget_range):
+    restaurants = Restaurant.objects.filter(address__startswith=postcode[:3])
     if (cuisine != "none"):
 	    restaurants = restaurants.filter(cuisine=cuisine)
     else:
         cuisine = "All"
     if (budget_range != "none"):
-	    restaurants = restaurants.filter(budget_range=budget_range)
+	    restaurants = restaurants.filter(budget_range=budget_range).filter(take_away=True)
     else:
         budget_range = -1
     dict = {"restaurants" : restaurants}
@@ -61,6 +61,30 @@ def restaurants(request, postcode, cuisine, budget_range):
         search = Search.objects.create(address=postcode, cuisine=cuisine, budget_range=budget_range)
         profile.searches.add(search)
     return render(request, 'just_choose/restaurants.html', dict)
+	
+def dineout(request, postcode, cuisine, budget_range):
+    restaurants = Restaurant.objects.filter(address__startswith=postcode[:3])
+    if (cuisine != "none"):
+	    restaurants = restaurants.filter(cuisine=cuisine)
+    else:
+        cuisine = "All"
+    if (budget_range != "none"):
+	    restaurants = restaurants.filter(budget_range=budget_range).filter(dine_out=True)
+    else:
+        budget_range = -1
+    dict = {"restaurants" : restaurants}
+    if request.user.is_authenticated():
+        profile = Profile.objects.filter(user=request.user).first()
+        search = Search.objects.create(address=postcode, cuisine=cuisine, budget_range=budget_range)
+        profile.searches.add(search)
+    return render(request, 'just_choose/restaurants.html', dict)
+	
+##in the case that you need a view that randomises restaurant choice
+##def random_restaurant:
+    #restaurants = Restaurant.objects.all(request)
+    #random_restaurant = random.choice(restaurants)
+    #dict = {"restaurant" : random_restaurant}
+    #return render(request, 'just_choose/ ##html page for the wheel', dict)
 	
 def menus(request, restaurant):
     menus = Menu.objects.filter(restaurant__name=restaurant)
