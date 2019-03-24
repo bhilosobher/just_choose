@@ -1,3 +1,4 @@
+{% extends 'just_choose/base.html' %}
 {% load static %}
 
 <html lang="en">
@@ -55,6 +56,12 @@
       box-shadow: 0px 0px;
     }
 
+    #motto {
+      position: relative;
+      top: 300px;
+      opacity: 0.2;
+    }
+
     
     #postcodebutton{
       position: relative;
@@ -65,12 +72,6 @@
     #title-h3{
       position: relative;
       top: -20px;
-    }
-
-    #where{
-      position: relative;
-      top: -13px;
-      opacity: 0.8;
     }
 
    
@@ -97,7 +98,7 @@
 
   <!-- navbar -->
   <header>
-    <nav class="wrapper red darken" id="">
+    <nav class="wrapper red" id="">
       <div>
         <a href="" class="brand-logo center">
           <h3 id="title-h3"><i>JUST</i><strong> CHOOSE</strong>!</h3>
@@ -138,6 +139,7 @@
       </div>
     </nav>
 
+    {% block body_block %}
     <!-- call-to-action  -->
     <br>
     <br>
@@ -167,14 +169,14 @@
     </div>
   </header>
 
-  <div class="row center">
-      <h5 class="red-text"><strong>Enough time arguing about what to eat tonight - there's too many choices...</strong></h5>
-      <p><h5 class="red-text">
+  <div class="row center red" id="motto">
+      <h5 class="white-text flow-text"><strong>Enough time arguing about what to eat tonight - there's too many choices...</strong></h5>
+      <p><h5 class="white-text flow-text">
         <strong>
           Just tell us your preferences and spin the wheel!
         </strong>
       </h5></p>  
-    </div>
+  </div>
   <!-- cards -->
   <div class="container">
       <h2 class="center">Promoted restaurants</h2>
@@ -308,11 +310,10 @@
       <div class="col s12 l5">
         <h2 class="red-text text-darken-4">
           Get in touch
-        </h2>
-        <h5>Are you a restaurant owner or manager?</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis excepturi voluptates, consequuntur,
-          ullam est temporibus, asperiores soluta adipisci tempore id maxime similique amet aspernatur commodi
-          quisquam. Alias, cumque. Incidunt, quasi.</p>
+        </h2> 
+        <p>We are always looking for feedback and recommandation to make this app better for it's users. Let us know what we can do for you!</p>
+        <h5 class="red-text text-darken-4">Are you a restaurant owner or manager?</h5>
+        <p>See these fancy restaurant photos at the top of the page? They are our featured restaurants - your own restaurant could be amongst them - contact us to find out more. </p>
       </div>
       <div class="col s12 l5 offset-l2">
         <form action="POST">
@@ -347,7 +348,7 @@
             </p>
           </div>
           <div class="input-field center">
-            <button class="btn red waves-effect waves-light">Submit</button>
+            <button class="btn red lighten-1 waves-effect waves-light">Submit</button>
           </div>
         </form>
       </div>
@@ -355,10 +356,11 @@
 
   </section>
 
+  {% endblock %}
 
   <!-- footer -->
 
-  <footer class="page-footer grey darken-4">
+  <footer class="page-footer orange darken-2">
     <div class="container">
 
       <div class="row">
@@ -380,9 +382,9 @@
     </div>
 
 
-    <div class="footer-copyright orange darken-4">
+    <div class="footer-copyright red lighten-1">
       <div class="container center-align">
-        &copy;2019 ITECH TEAM_
+        &copy;2019 ITECH TEAM AI
       </div>
     </div>
   </footer>

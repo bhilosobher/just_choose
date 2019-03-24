@@ -1,6 +1,6 @@
-{% block title %}Login{% endblock %}
-
-{% block content %}
+{% extends 'just_choose/base.html' %}
+{% load static %}
+{% block body_block %}
   <h2>Login</h2>
   <form method="post">
     {% csrf_token %}
