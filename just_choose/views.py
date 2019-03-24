@@ -46,7 +46,7 @@ def myprofile (request):
     return HttpResponse("once logged in, view profile")
 
 def takeaway(request, postcode, cuisine, budget_range):
-    restaurants = Restaurant.objects.filter(address__startswith=postcode[:3])
+    restaurants = Restaurant.objects.filter(address__startswith=postcode[:3]).filter(take_away=True)
     if (cuisine != "none"):
 	    restaurants = restaurants.filter(cuisine=cuisine)
     else:
@@ -63,7 +63,7 @@ def takeaway(request, postcode, cuisine, budget_range):
     return render(request, 'just_choose/restaurants.html', dict)
 	
 def dineout(request, postcode, cuisine, budget_range):
-    restaurants = Restaurant.objects.filter(address__startswith=postcode[:3])
+    restaurants = Restaurant.objects.filter(address__startswith=postcode[:3]).filter(dine_out=True)
     if (cuisine != "none"):
 	    restaurants = restaurants.filter(cuisine=cuisine)
     else:

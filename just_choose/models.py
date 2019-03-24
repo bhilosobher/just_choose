@@ -53,9 +53,14 @@ class Restaurant(models.Model):
         blank=False,
     )
     
-    dine_in = models.BooleanField(default=False)
+	#restaurants that have the option to dine out
+    dine_out = models.BooleanField(default=True)
 	
-    take_away= models.BooleanField(default=False)
+	#restaurants that offer take away
+    take_away= models.BooleanField(default=True)
+
+    #restaurants that have paid a fee in order to be promoted on the front page
+    promoted= models.BooleanField(default=False)
 
     # some restaurants may link their websites, others not
     website = models.URLField(
