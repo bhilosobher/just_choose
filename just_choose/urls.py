@@ -18,4 +18,5 @@ urlpatterns = [
 	url(r'^takeaway/(?P<postcode>\w{1,50})/'r'(?P<cuisine>\w{1,50})/'r'(?P<budget_range>\w{1,50})/$', views.takeaway, name ='takeaway'),
 	url(r'^dineout/(?P<postcode>\w{1,50})/'r'(?P<cuisine>\w{1,50})/'r'(?P<budget_range>\w{1,50})/$', views.dineout, name ='dineout'),
 	url(r'^menus/(?P<restaurant>\w{1,50})/$', views.menus, name ='menus'),
+    url(r'^restaurants/$', views.restaurants, name = 'restaurants'),
  ]

@@ -1,4 +1,12 @@
+{% extends 'just_choose/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
 {% for restaurant in restaurants %}
               {{ restaurant.name }} {{ restaurant.budget_range }} {{ restaurant.cuisine }}
 			  <br>
 			  {% endfor %}
+
+{% endblock %}
+

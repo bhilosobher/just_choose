@@ -1,4 +1,11 @@
+{% extends 'just_choose/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
 {% for search in searches %}
-              {{ search.address }} {{ search.cuisine }} {{ search.budget_range }}
+        	  {{ search.address }} {{ search.cuisine }} {{ search.budget_range }}
 			  <br>
 			  {% endfor %}
+
+{% endblock %}

@@ -1,10 +1,43 @@
 {% extends 'just_choose/base.html' %}
 {% load static %}
-{% block body_block %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+
+{% block style_block %}
+
+#login_form{
+  opacity: 0.9;
+}
+@media screen and (max-height: 768px) {
+  html{
+    max-height: 700;
+  }
+
+}
+
 {% endblock %}
+
+{% block body_block %}
+<div class="hide-on-med-and-down"> 
+  <br><br><br><br><br><br><br><br><br>
+</div>
+  
+  <h2 class="center white-text"><strong>Log in to Just Choose!</strong></h2>
+  <form method="post">
+
+    {% csrf_token %}
+    <div class="row">
+      <div class="col l4 s12 white push-l4" id="login_form">
+        {{ form.as_p }}
+      </div>
+      
+    </div>
+    <div class="row container">
+      <button class="col l4 s6 push-l4 btn-large red" type="submit" name="action">LOGIN</button>
+    </div>
+    
+  </form>
+  <br><br>
+  <div class="hide-on-med-and-down"> 
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+  </div>
+{% endblock %}
+

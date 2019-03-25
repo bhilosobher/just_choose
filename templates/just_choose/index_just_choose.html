@@ -1,143 +1,6 @@
 {% extends 'just_choose/base.html' %}
 {% load static %}
 
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- font awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-    crossorigin="anonymous">
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-  <title>Just Choose!</title>
-  <style>
-    header {
-      background: url({% static "images/pizza.jpg" %});
-      background-size: cover;
-      background-position:  100% 10%;
-      min-height: 450px;
-    }
-   
-    .section {
-      padding-bottom: 4vw;
-    }
-
-    #postcode-info{
-      
-      position: relative;
-      top: 20px;
-
-    }
-
-     .input-field input:focus + label {
-     color: rgba(255, 0, 0, 0.397) !important;
-   }
-   
-
-  
-    /* label underline focus color */
-    .row .input-field input:focus {
-      border-bottom: 1px solid red !important;
-      box-shadow: 0 1px 0 0 red !important
- }
-
-    .wrapper {
-      opacity: 0.8;
-    }
-
-    #searchnav{
-      border: 0px;
-      margin: 0px;
-      box-shadow: 0px 0px;
-    }
-
-    #motto {
-      position: relative;
-      top: 300px;
-      opacity: 0.2;
-    }
-
-    
-    #postcodebutton{
-      position: relative;
-      margin: 0px;
-      box-shadow: 0px 0px;
-    }
-
-    #title-h3{
-      position: relative;
-      top: -20px;
-    }
-
-   
-    #postcode_input{
-      opacity: 0.9;
-    }
-
-    @media screen and (max-width: 870px) {
-      header {
-        min-height: 500px;
-      }
-      #para1{
-        min-height: 250;
-      }
-
-      #para2{
-        min-height: 250;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- navbar -->
-  <header>
-    <nav class="wrapper red" id="">
-      <div>
-        <a href="" class="brand-logo center">
-          <h3 id="title-h3"><i>JUST</i><strong> CHOOSE</strong>!</h3>
-        </a>
-        <a href="" class="sidenav-trigger" data-target="mobile-menu">
-          <i class="material-icons">menu</i>
-        </a>
-        <ul class="right hide-on-med-and-down">
-          
-          <li><a href="http://127.0.0.1:8000/just_choose/login/"><strong>LOGIN</strong></a></li>
-		  <li><a href="http://127.0.0.1:8000/just_choose/signup/"><strong>SIGN UP</strong></a></li>
-          <li><a href="https://www.instagram.com" class="tooltipped btn-floating btn-small orange darken-4" data-tooltip="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a></li>
-          <li><a href="https://www.facebook.com" class="tooltipped btn-floating btn-small orange darken-4" data-tooltip="Facebook">
-              <i class="fab fa-facebook"></i>
-            </a></li>
-          <li><a href="https://www.twitter.com" class="tooltipped btn-floating btn-small orange darken-4" data-tooltip="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a></li>
-        </ul>
-
-        <ul class="left hide-on-med-and-down">
-            <li><a href="#about"><strong>About us</strong> </a></li>
-            <li><a href="#contact"><strong>Contact</strong></a></li>
-            <li><a href="restaurants.html"><strong>Restaurants</strong></a></li>
-        </ul>
-        <ul class="sidenav grey lighten-2" id="mobile-menu">
-          <li><a href="#photos">About us</a></li>
-          <li><a href="#services">Restaurants</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#contact">Login or signup</a></li>
-          <li></li>
-          <li><a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
-        </ul>
-      </div>
-    </nav>
 
     {% block body_block %}
     <!-- call-to-action  -->
@@ -169,19 +32,15 @@
     </div>
   </header>
 
-  <div class="row center red" id="motto">
-      <h5 class="white-text flow-text"><strong>Enough time arguing about what to eat tonight - there's too many choices...</strong></h5>
-      <p><h5 class="white-text flow-text">
-        <strong>
-          Just tell us your preferences and spin the wheel!
-        </strong>
-      </h5></p>  
+  <div class="row center flow-text red-text" id="motto">
+   <h5><strong> Hungry? Hard to choose? Let us make it easier for you. Just enter your location...just choose</strong></h5>
   </div>
   <!-- cards -->
   <div class="container">
       <h2 class="center">Promoted restaurants</h2>
       <div class="row">
-        <div class="col s6 l3">
+        <!--first card-->
+        <div class="col s12 l3">
           <div class="card">
             <div class="card-image">
               <img src="{% static "images/american.jpg" %}" alt="">
@@ -198,7 +57,8 @@
             </div>
           </div>
         </div>
-        <div class="col s6 l3">
+        <!--second card-->
+        <div class="col s12 l3">
           <div class="card">
             <div class="card-image">
               <img src="{% static "images/mexican.jpg" %}" alt="">
@@ -215,7 +75,8 @@
             </div>
           </div>
         </div>
-        <div class="col s6 l3">
+        <!--third card-->
+        <div class="col s12 l3">
           <div class="card">
             <div class="card-image">
               <img src="{% static "images/indian.jpg" %}" alt="">
@@ -232,7 +93,8 @@
             </div>
           </div>
         </div>
-        <div class="col s6 l3">
+        <!--4th card-->
+        <div class="col s12 l3">
             <div class="card">
               <div class="card-image">
                 <img src="{% static "images/american.jpg" %}" alt="">
@@ -248,7 +110,8 @@
                   <a href="">View Restaurant</a>
               </div>
             </div>
-          </div>
+        </div>
+
       </div>
     </div>
  
@@ -355,85 +218,4 @@
     </div>
 
   </section>
-
   {% endblock %}
-
-  <!-- footer -->
-
-  <footer class="page-footer orange darken-2">
-    <div class="container">
-
-      <div class="row">
-        <div class="col s12 l6">
-          <h5>About me</h5>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quibusdam id, voluptatibus praesentium
-            quos vero facere amet dolore. Libero debitis ipsum minus esse ut at, repudiandae totam ullam itaque
-            inventore!</p>
-        </div>
-        <div class="col s12 l4 offset-l2">
-          <h5> Connect</h5>
-          <ul>
-            <li><a href="https://www.facebook.com" class="grey-text text-lighten-3">Facebook</a></li>
-            <li><a href="https://www.twitter.com" class="grey-text text-lighten-3">Twitter</a></li>
-            <li><a href="https://www.instagram.com" class="grey-text text-lighten-3">Instagram</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="footer-copyright red lighten-1">
-      <div class="container center-align">
-        &copy;2019 ITECH TEAM AI
-      </div>
-    </div>
-  </footer>
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $('.sidenav').sidenav();
-      $('.materialboxed').materialbox();
-      $('.parallax').parallax();
-      $('.tabs').tabs();
-      $('.datepicker').datepicker({
-        disableWeekends: true
-      });
-      $('.tooltipped').tooltip();
-      $('.scrollspy').scrollSpy();
-    });
-  </script>
-</body>
-
-</html>
-
-<!-- initial postcode searchbox...
-
-    <div class="container ">
-      <br><br>
-      <br><br>
-
-      <div class="row">
-        <div class="col s12 l5" id="where">
-          <h3 class="header left darken-1 white-text" id="where_text"><strong> Where are you?</strong></h3>
-        </div>
-        <form action="POST">
-          <div class="col s6 l4">
-             Hi!!!!
-
-          </div>
-          <div class="col s2 l3">
-            <div class="input-field">
-              <a href="#" id="search-button" class="right btn-large red darken-1 waves-effect waves-light  "><strong>Let's
-                  go!</strong></a>
-            </div>
-          </div>
-        </form>
-      </div>
-      <br>
-
-    </div>
-
--->

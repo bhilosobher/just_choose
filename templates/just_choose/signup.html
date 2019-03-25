@@ -1,8 +1,27 @@
-{% block content %}
-  <h2>Sign up</h2>
+{% extends 'just_choose/base.html' %}
+{% load static %}
+
+{% block style_block %} 
+
+#signup_form{
+  opacity: 0.9;
+}
+
+{% endblock %}
+
+{% block body_block %}
+<h2 class="center white-text"><strong>Sign up to Just Choose!</strong></h2>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
+    <div class="row">
+        <div class="COL l6 s12 white push-l3" id="signup_form">
+            {{ form.as_p }}
+        </div>
+    </div>
+    <div class="row container">
+        <button class="col l4 s6 push-l4 btn-large red" type="submit" name="action">SIGN UP</button>
+      </div>
+      
   </form>
+
 {% endblock %}

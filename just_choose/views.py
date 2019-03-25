@@ -113,4 +113,9 @@ def searches(request):
         return render(request, 'just_choose/searches.html', dict)
     else:
         return render(request, 'just_choose/searches.html', {})
+#view to contain a list of all restaurants in the DB...
+def restaurants(request):
+    restaurants = Restaurant.objects.all()
+    dict = {"restaurants": restaurants}
+    return render(request, 'just_choose/restaurants.html', dict)
     

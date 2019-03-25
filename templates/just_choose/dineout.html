@@ -1,0 +1,21 @@
+{% extends 'just_choose/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<select class="input-field red darken-1" style="display: block;" id="cuisines">
+        <option value="none">Choose cuisine</option>
+        {% for cuisine in cuisines %}
+        <option value="{{ cuisine.0 }}">{{ cuisine.1 }}</option>
+        {% endfor %}
+    </select>
+    <select class="input-field red darken-1" style="display: block;" id="budget_range">
+        <option value="none">Choose price range</option>
+        {% for budget_range in budget_ranges %}
+        <option value="{{ budget_range.0 }}">{{ budget_range.1 }}</option>
+        {% endfor %}
+    </select>
+    <button id="search-button" class="right btn-large red darken-1 waves-effect waves-light  "><strong>Let's go!</strong></button>
+    
+
+{% endblock %}

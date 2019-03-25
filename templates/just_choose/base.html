@@ -45,17 +45,12 @@
       box-shadow: 0 1px 0 0 red !important
  }
 
-    .wrapper {
-      opacity: 0.8;
-    }
-
     #searchnav{
       border: 0px;
       margin: 0px;
       box-shadow: 0px 0px;
     }
 
-    
     #postcodebutton{
       position: relative;
       margin: 0px;
@@ -73,10 +68,8 @@
       opacity: 0.8;
     }
 
-   
-    #postcode_input{
-      opacity: 0.9;
-    }
+    {% block style_block %}
+    {% endblock %}
 
     @media screen and (max-width: 870px) {
       header {
@@ -97,18 +90,18 @@
 
   <!-- navbar -->
   <header>
-    <nav class="wrapper red" id="">
-      <div>
-        <a href="" class="brand-logo center">
+    <nav>
+      <div class="nav-wrapper red" id="header_wrapper">
+        <a href="{% url 'index' %}" class="brand-logo center">
           <h3 id="title-h3"><i>JUST</i><strong> CHOOSE</strong>!</h3>
         </a>
-        <a href="" class="sidenav-trigger" data-target="mobile-menu">
+        <a href="" class="sidenav-trigger" data-target="mobile-demo">
           <i class="material-icons">menu</i>
         </a>
-        <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down" id="nav-mobile">
           
-          <li><a href="http://127.0.0.1:8000/just_choose/login/"><strong>LOGIN</strong></a></li>
-		  <li><a href="http://127.0.0.1:8000/just_choose/signup/"><strong>SIGN UP</strong></a></li>
+          <li><a href="{% url 'login' %}"><strong>LOGIN</strong></a></li>
+		  <li><a href="{% url 'signup' %}"><strong>SIGN UP</strong></a></li>
           <li><a href="https://www.instagram.com" class="tooltipped btn-floating btn-small orange darken-2" data-tooltip="Instagram">
               <i class="fab fa-instagram"></i>
             </a></li>
@@ -119,26 +112,32 @@
               <i class="fab fa-twitter"></i>
             </a></li>
         </ul>
+        
 
         <ul class="left hide-on-med-and-down">
             <li><a href="#about"><strong>About us</strong> </a></li>
             <li><a href="#contact"><strong>Contact</strong></a></li>
-            <li><a href="restaurants.html"><strong>Restaurants</strong></a></li>
+            <li><a href="{% url 'restaurants' %}"><strong>Restaurants</strong></a></li>
         </ul>
-        <ul class="sidenav grey lighten-2" id="mobile-menu">
-          <li><a href="#photos">About us</a></li>
-          <li><a href="#services">Restaurants</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#contact">Login or signup</a></li>
-          <li></li>
-          <li><a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+        <ul class="sidenav white" id="mobile-demo">
+            <li><a href="#about">About us</a></li>
+            <li><a href="{% url 'restaurants' %}">Restaurants</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Signup</a></li>
+            <br>
+            <li><a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
         </ul>
       </div>
     </nav>
+    
     {% block body_block %}
+    
     {% endblock %}
+
+  
 
 
 
@@ -166,7 +165,7 @@
     </div>
 
 
-    <div class="footer-copyright red lighten-1">
+    <div class="footer-copyright red">
       <div class="container center-align">
         &copy;2019 ITECH TEAM AI
       </div>
@@ -182,9 +181,6 @@
       $('.materialboxed').materialbox();
       $('.parallax').parallax();
       $('.tabs').tabs();
-      $('.datepicker').datepicker({
-        disableWeekends: true
-      });
       $('.tooltipped').tooltip();
       $('.scrollspy').scrollSpy();
     });
