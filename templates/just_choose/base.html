@@ -100,8 +100,15 @@
         </a>
         <ul class="right hide-on-med-and-down" id="nav-mobile">
           
-          <li><a href="{% url 'login' %}"><strong>LOGIN</strong></a></li>
-		  <li><a href="{% url 'signup' %}"><strong>SIGN UP</strong></a></li>
+          {% if user.is_authenticated %}
+          <li><a href="http://127.0.0.1:8000/just_choose/logout"><strong>SIGN OUT</strong></a></li>
+          <li><a href="http://127.0.0.1:8000/just_choose/searches"><strong>MY PROFILE</strong></a></li>
+             {% else %}
+         <li><a href="http://127.0.0.1:8000/just_choose/login"><strong>LOGIN</strong></a></li>
+         <li><a href="http://127.0.0.1:8000/just_choose/signup"><strong>SIGN UP</strong></a></li>
+             {% endif %}
+      
+
           <li><a href="https://www.instagram.com" class="tooltipped btn-floating btn-small orange darken-2" data-tooltip="Instagram">
               <i class="fab fa-instagram"></i>
             </a></li>
@@ -183,8 +190,74 @@
       $('.tabs').tabs();
       $('.tooltipped').tooltip();
       $('.scrollspy').scrollSpy();
+      $('select').formSelect();
+      $('#search-button').on("click", getInfoFromDB);
+      
+      
+
+      $('#postcodebutton').click(function(){
+          $('.modal').modal();
+      });
+      $('#clickTakeAway').click(function(){
+          $('#inputPO').hide();
+          $('#chooseDistance').hide();
+          $('#displayCriterias').show();
+          
+      });
+      $('#clickDineOut').click(function(){
+          $('#inputPO').hide();
+          $('#chooseDeliveryCost').hide();
+          $('#displayCriterias').show();
+      });
     });
+
+    function getInfoFromDB(){
+      $.ajax({
+        type: "GET",
+        url: '/textFromServer.txt',
+        success: postToPage
+      });
+    }
+
+    function postToPage(data, status){
+      $('#displayRestaurant').text(data);
+    }
   </script>
+
+
+
+
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.sidenav').sidenav();
+    $('.materialboxed').materialbox();
+    $('.parallax').parallax();
+    $('.tabs').tabs();
+    $('.datepicker').datepicker({
+      disableWeekends: true
+    });
+    $('.tooltipped').tooltip();
+    $('.scrollspy').scrollSpy();
+  });
+  $( "#search-button, postcode_input" ).click(function() {
+    var cuisine = $("#cuisines :selected").val();
+    var budget_range = $("#budget_range :selected").val();
+    var postcode = $("#postcode").val();
+    window.location.href = '/just_choose/takeaway/' + postcode + '/' + cuisine + '/' + budget_range;
+  });
+</script>
+
+
+
+
+
+
+
+
 </body>
 
 </html>

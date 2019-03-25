@@ -8,24 +8,112 @@
     <br>
     <br>
     <br>
+    <div><p id="displayRestaurant"></p></div>
     <div class="container" id="postcode-info">
-      <div class="row orange darken-2">
-        
+      
+<!-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+<!--^^^^^^^^^^^^^^^^^^^^DISPLAY CRITERIAS TO BE SPESIFIED ^^^^^^^^^^^^^^^^^^^^-->
+<!-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+        <div class="row" id="displayCriterias" style="display: none">
+                  
+            <div class="input-field col s6 m6 l3 xl3 orange darken-2 center" id="cuisines">
+                <select>
+                    <option value="none">Choose cuisine</option>
+                      {% for cuisine in cuisines %}
+                    <option value="{{ cuisine.0 }}">{{ cuisine.1 }}</option>
+                      {% endfor %}
+                </select>
+            </div>
+
+            <div class="input-field col s6 m6 l3 xl3 orange darken-2 center" id="budget_range">
+                <select>
+                   <option value="none">Choose price range</option>
+		                  {% for budget_range in budget_ranges %}
+                   <option value="{{ budget_range.0 }}">{{ budget_range.1 }}</option>
+			                {% endfor %}
+                </select>
+            </div>
+
+            <div class="input-field col s6 m6 l3 xl3 orange darken-2 center" id="chooseDistance">
+                <select>
+                    <option value="" disabled selected>Choose Distance</option>
+                    <option value="1">up to 1 mile</option>
+                    <option value="2">1-3 miles</option>
+                    <option value="3">3+ miles</option>
+                </select>
+            </div>
+
+            <div class="input-field col s6 m6 l3 xl3 orange darken-2 center" id="chooseDeliveryCost">
+                <select>
+                    <option value="" disabled selected>Choose Delivery Cost</option>
+                    <option value="1">free delivery</option>
+                    <option value="2">0-5£</option>
+                    <option value="3">doesn't matter</option>
+                </select>
+            </div>
+
+            <div class="input-field col s6 m6 l3 xl3 btn-large orange darken-2 center  waves-effect waves-light" id="search-button">
+                <a href="#" class="flow-text white-text ">
+                  next
+                </a>
+            </div>
+           
+           
+        </div>
+            
+            
+       
+
+
+
+
+
+
+
+
+
+
+
+      <div class="row orange darken-2" id="postcodes">
+
+
         <div class="col s6 l9 white"> <nav>
             <div class="nav-wrapper white" id="searchnav">
               <form action="POST">
                 <div class="input-field white" id="postcode_input">
-                  <input id="search" type="search" required>
+                  <input type="text" id="postcode">
                   <label class="label-icon white-text" for="search"><i class="material-icons">search</i></label>
                   <label class="label orange-text" for="search">&emsp;&emsp;type your postcode here...</label>
                   <i class="material-icons">close</i>
                 </div>
               </form>
             </div>
-          </nav></div>
+          </nav>
+        </div>
     
-        <div class="col s6 l3 btn-large right orange darken-2 center  waves-effect waves-light" id="postcodebutton"><a href="#" class="flow-text white-text ">Let's go!</a></div>
+        <div href="#terms" class="col s6 l3 btn-large orange darken-2 center  waves-effect waves-light modal-trigger" id="postcodebutton">
+          <a href="#" class="flow-text white-text ">
+            Let's go!
+          </a>
+        </div>
         
+        <div class="modal" id="terms">
+          <div class="modal-content">
+              <h4>
+                  Would you prefer to go out or stay at home today?
+              </h4>
+              <p>Please choose one of the following options:</p>
+          </div>
+          <div class="modal-footer">
+              <div class="row">
+                  
+                  <div class="col z-depth-3 s6 m6 l6 xl6 btn-large orange darken-2 center  waves-effect waves-light" id="clickTakeAway"><a href="#" ></a>Take Away</a></div>
+                  <div class="col z-depth-3 s6 m6 l6 xl6 btn-large orange darken-2 center  waves-effect waves-light" id="clickDineOut"><a href="#" ></a></a>Dine Out</div>
+                  
+              </div>
+              
+          </div>
+      </div>
         
        
       </div>

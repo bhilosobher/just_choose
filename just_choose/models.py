@@ -8,14 +8,14 @@ class Restaurant(models.Model):
     # define a price range field for the Restaurant model; this field can only one of 4 values and is ££ by default
     LOW = 1
     MODERATE = 2
-    HIGH = 3
-    HIGHEST = 4
+    EXPENSIVE = 3
+    LUX = 4
     # left side of the tuple is the value stored in the DB; right side is the text displayed to the user (i.e. in form)
     PRICE_RANGE_CHOICES = (
         (LOW, '£'),
         (MODERATE, '££'),
-        (HIGH, '£££'),
-        (HIGHEST, '££££'),
+        (EXPENSIVE, '£££'),
+        (LUX, '££££'),
     )
     budget_range = models.IntegerField(
         choices=PRICE_RANGE_CHOICES,
