@@ -199,13 +199,13 @@
           $('.modal').modal();
       });
       $('#clickTakeAway').click(function(){
-          $('#inputPO').hide();
+          $('#postcodes').hide();
           $('#chooseDistance').hide();
           $('#displayCriterias').show();
           
       });
       $('#clickDineOut').click(function(){
-          $('#inputPO').hide();
+          $('#postcodes').hide();
           $('#chooseDeliveryCost').hide();
           $('#displayCriterias').show();
       });
@@ -243,7 +243,7 @@
     $('.tooltipped').tooltip();
     $('.scrollspy').scrollSpy();
   });
-  $( "#search-button, postcode_input" ).click(function() {
+  $( "#search-button, postcode" ).click(function() {
     var cuisine = $("#cuisines :selected").val();
     var budget_range = $("#budget_range :selected").val();
     var postcode = $("#postcode").val();

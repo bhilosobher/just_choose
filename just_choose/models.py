@@ -29,15 +29,15 @@ class Restaurant(models.Model):
     )
     # define another choice field for the restaurant: this one can take as many values as the cuisine tuple has below
     CUISINE_TYPES = (
-        ('indian', 'Indian'),
-        ('italian', 'Italian'),
-        ('mexican', 'Mexican'),
-        ('spanish', 'Spanish'),
-        ('chinese', 'Chinese'),
-        ('kebab', 'Kebab'),
-        ('greek', 'Greek'),
-        ('japanese', 'Japanese'),
-        ('american', 'American'),
+        ('indian', 'indian'),
+        ('italian', 'italian'),
+        ('mexican', 'mexican'),
+        ('spanish', 'spanish'),
+        ('chinese', 'chinese'),
+        ('kebab', 'kebab'),
+        ('greek', 'greek'),
+        ('japanese', 'japanese'),
+        ('american', 'american'),
         ('eclectic', 'eclectic'),
     )
 
@@ -89,7 +89,6 @@ class Menu(models.Model):
     )
     name = models.CharField(
         max_length=128,
-        unique=True,
     )
     ITEM_TYPE = (
         ('starter', 'starter'),
