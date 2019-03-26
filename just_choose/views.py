@@ -19,40 +19,20 @@ def index(request):
     return render(request, 'just_choose/index_just_choose.html', dict)
 
 
-def contact(request):
-    return HttpResponse("This is the contact us/about us page!")
-
-
-def choose(request):
-    return HttpResponse("here you choose between takeaway and restaurant wheel")
-
-
-def dine (request):
-    return HttpResponse("This is the wheel for dining out w/ dining out customization options!")
-
-
-def takeaway (request):
-    return HttpResponse("This is the wheel for dining out w/ dining out customization options!")
-
-
-def superchoose (request):
-    return HttpResponse("here you have to option to spin for a random meal")
-
-
-def helper (request):
-    return HttpResponse("if you need help..")
-
 def myprofile (request):
-    return HttpResponse("once logged in, view profile")
+    # if request.user.is_authenticated():
+
+    return render(request, 'just_choose/myprofile.html', {})
+
 
 def takeaway(request, postcode, cuisine, budget_range):
     restaurants = Restaurant.objects.filter(address__startswith=postcode[:3]).filter(take_away=True)
-    if (cuisine != "none"):
-	    restaurants = restaurants.filter(cuisine=cuisine)
+    if cuisine != "none":
+        restaurants = restaurants.filter(cuisine=cuisine)
     else:
         cuisine = "All"
-    if (budget_range != "none"):
-	    restaurants = restaurants.filter(budget_range=budget_range).filter(take_away=True)
+    if budget_range != "none":
+        restaurants = restaurants.filter(budget_range=budget_range).filter(take_away=True)
     else:
         budget_range = -1
     dict = {"restaurants" : restaurants}
@@ -61,15 +41,16 @@ def takeaway(request, postcode, cuisine, budget_range):
         search = Search.objects.create(address=postcode, cuisine=cuisine, budget_range=budget_range)
         profile.searches.add(search)
     return render(request, 'just_choose/restaurants.html', dict)
-	
+
+
 def dineout(request, postcode, cuisine, budget_range):
     restaurants = Restaurant.objects.filter(address__startswith=postcode[:3]).filter(dine_out=True)
-    if (cuisine != "none"):
-	    restaurants = restaurants.filter(cuisine=cuisine)
+    if cuisine != "none":
+        restaurants = restaurants.filter(cuisine=cuisine)
     else:
         cuisine = "All"
-    if (budget_range != "none"):
-	    restaurants = restaurants.filter(budget_range=budget_range).filter(dine_out=True)
+    if budget_range != "none":
+        restaurants = restaurants.filter(budget_range=budget_range).filter(dine_out=True)
     else:
         budget_range = -1
     dict = {"restaurants" : restaurants}
@@ -78,18 +59,20 @@ def dineout(request, postcode, cuisine, budget_range):
         search = Search.objects.create(address=postcode, cuisine=cuisine, budget_range=budget_range)
         profile.searches.add(search)
     return render(request, 'just_choose/restaurants.html', dict)
-	
-##in the case that you need a view that randomises restaurant choice
-##def random_restaurant:
-    #restaurants = Restaurant.objects.all(request)
-    #random_restaurant = random.choice(restaurants)
-    #dict = {"restaurant" : random_restaurant}
-    #return render(request, 'just_choose/ ##html page for the wheel', dict)
-	
+
+# in the case that you need a view that randomises restaurant choice
+# def random_restaurant:
+# restaurants = Restaurant.objects.all(request)
+# random_restaurant = random.choice(restaurants)
+# dict = {"restaurant" : random_restaurant}
+# return render(request, 'just_choose/ ##html page for the wheel', dict)
+
+
 def menus(request, restaurant):
     menus = Menu.objects.filter(restaurant__name=restaurant)
     serialized_menus = serializers.serialize('json', menus)
     return JsonResponse(serialized_menus, safe=False)
+
 
 def signup(request):
     if request.method == 'POST':
@@ -106,6 +89,7 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'just_choose/signup.html', {'form': form})
 
+
 def searches(request):
     if request.user.is_authenticated():
         searches = Profile.objects.filter(user=request.user).first().searches.all()
@@ -113,9 +97,10 @@ def searches(request):
         return render(request, 'just_choose/searches.html', dict)
     else:
         return render(request, 'just_choose/searches.html', {})
-#view to contain a list of all restaurants in the DB...
+
+
+# view to contain a list of all restaurants in the DB...
 def restaurants(request):
     restaurants = Restaurant.objects.all()
     dict = {"restaurants": restaurants}
     return render(request, 'just_choose/restaurants.html', dict)
-    

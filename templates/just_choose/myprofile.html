@@ -1,0 +1,18 @@
+{% extends 'just_choose/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+{% if user.is_authenticated %}
+			<h1>Hello, {{ user.username }}!</h1>
+		{% else %}
+			 <h1>You are not logged in yet! Please login <a href="{% url 'login' %}">here</a>!</h1>
+		{% endif %}
+
+<!--  to display user's past searches:
+    {% for search in searches %}
+        	  {{ search.address }} {{ search.cuisine }} {{ search.budget_range }}
+			  <br>
+			  {% endfor %}
+-->
+{% endblock %}

@@ -2,11 +2,24 @@
 {% load static %}
 
 {% block body_block %}
-
+<h1>Restaurants on Just Choose (Glasgow area)</h1>
+<ul class="collection">
 {% for restaurant in restaurants %}
-              {{ restaurant.name }} {{ restaurant.budget_range }} {{ restaurant.cuisine }}
-			  <br>
-			  {% endfor %}
-
+	<li class="collection-item">
+		<div class="row">
+			<div class="col">
+					{{ restaurant.name }}
+			</div>
+			<div class="col">
+					{{ restaurant.budget_range }} 
+			</div>
+			<div class="col">
+					{{ restaurant.cuisine }}
+			</div>
+		</div>
+	</li>
+			  
+{% endfor %}
+</ul>
 {% endblock %}
 

@@ -101,11 +101,11 @@
         <ul class="right hide-on-med-and-down" id="nav-mobile">
           
           {% if user.is_authenticated %}
-          <li><a href="http://127.0.0.1:8000/just_choose/logout"><strong>SIGN OUT</strong></a></li>
-          <li><a href="http://127.0.0.1:8000/just_choose/searches"><strong>MY PROFILE</strong></a></li>
+          <li><a href="{% url 'logout' %}"><strong>LOG OUT</strong></a></li>
+          <li><a href="{% url 'myprofile' %}"><strong>MY PROFILE</strong></a></li>
              {% else %}
-         <li><a href="http://127.0.0.1:8000/just_choose/login"><strong>LOGIN</strong></a></li>
-         <li><a href="http://127.0.0.1:8000/just_choose/signup"><strong>SIGN UP</strong></a></li>
+         <li><a href="{% url 'login' %}"><strong>LOGIN</strong></a></li>
+         <li><a href="{% url 'signup' %}"><strong>SIGN UP</strong></a></li>
              {% endif %}
       
 
@@ -120,16 +120,16 @@
             </a></li>
         </ul>
         
-
+<!-- mobile sidenav -->
         <ul class="left hide-on-med-and-down">
             <li><a href="#about"><strong>About us</strong> </a></li>
             <li><a href="#contact"><strong>Contact</strong></a></li>
             <li><a href="{% url 'restaurants' %}"><strong>Restaurants</strong></a></li>
         </ul>
         <ul class="sidenav white" id="mobile-demo">
-            <li><a href="#about">About us</a></li>
+            <li><a href="% url 'index' %">About us</a></li>
             <li><a href="{% url 'restaurants' %}">Restaurants</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="{% url 'index' %}">Contact</a></li>
             <li><a href="{% url 'login' %}">Login</a></li>
             <li><a href="{% url 'signup' %}">Signup</a></li>
             <br>
