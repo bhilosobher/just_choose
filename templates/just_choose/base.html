@@ -14,76 +14,8 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <title>Just Choose!</title>
-  <style>
-    header {
-      background: url({% static "images/pizza.jpg" %});
-      background-size: cover;
-      background-position:  100% 10%;
-      min-height: 450px;
-    }
-   
-    .section {
-      padding-bottom: 4vw;
-    }
-
-    #postcode-info{
-      
-      position: relative;
-      top: 20px;
-
-    }
-
-     .input-field input:focus + label {
-     color: rgba(255, 0, 0, 0.397) !important;
-   }
-   
-
+  <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
   
-    /* label underline focus color */
-    .row .input-field input:focus {
-      border-bottom: 1px solid red !important;
-      box-shadow: 0 1px 0 0 red !important
- }
-
-    #searchnav{
-      border: 0px;
-      margin: 0px;
-      box-shadow: 0px 0px;
-    }
-
-    #postcodebutton{
-      position: relative;
-      margin: 0px;
-      box-shadow: 0px 0px;
-    }
-
-    #title-h3{
-      position: relative;
-      top: -20px;
-    }
-
-    #where{
-      position: relative;
-      top: -13px;
-      opacity: 0.8;
-    }
-
-    {% block style_block %}
-    {% endblock %}
-
-    @media screen and (max-width: 870px) {
-      header {
-        min-height: 500px;
-      }
-      #para1{
-        min-height: 250;
-      }
-
-      #para2{
-        min-height: 250;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -179,83 +111,12 @@
     </div>
   </footer>
 
+  
+  
   <!-- Compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $('.sidenav').sidenav();
-      $('.materialboxed').materialbox();
-      $('.parallax').parallax();
-      $('.tabs').tabs();
-      $('.tooltipped').tooltip();
-      $('.scrollspy').scrollSpy();
-      $('select').formSelect();
-      $('#search-button').on("click", getInfoFromDB);
-      
-      
-
-      $('#postcodebutton').click(function(){
-          $('.modal').modal();
-      });
-      $('#clickTakeAway').click(function(){
-          $('#postcodes').hide();
-          $('#chooseDistance').hide();
-          $('#displayCriterias').show();
-          
-      });
-      $('#clickDineOut').click(function(){
-          $('#postcodes').hide();
-          $('#chooseDeliveryCost').hide();
-          $('#displayCriterias').show();
-      });
-    });
-
-    function getInfoFromDB(){
-      $.ajax({
-        type: "GET",
-        url: '/textFromServer.txt',
-        success: postToPage
-      });
-    }
-
-    function postToPage(data, status){
-      $('#displayRestaurant').text(data);
-    }
-  </script>
-
-
-
-
-
-<!-- Compiled and minified JavaScript -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidenav').sidenav();
-    $('.materialboxed').materialbox();
-    $('.parallax').parallax();
-    $('.tabs').tabs();
-    $('.datepicker').datepicker({
-      disableWeekends: true
-    });
-    $('.tooltipped').tooltip();
-    $('.scrollspy').scrollSpy();
-  });
-  $( "#search-button, postcode" ).click(function() {
-    var cuisine = $("#cuisines :selected").val();
-    var budget_range = $("#budget_range :selected").val();
-    var postcode = $("#postcode").val();
-    window.location.href = '/just_choose/takeaway/' + postcode + '/' + cuisine + '/' + budget_range;
-  });
-</script>
-
-
-
-
-
-
+  <script src="{% static "js/justChoose.js" %}"></script>
 
 
 </body>

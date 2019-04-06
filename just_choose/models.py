@@ -138,6 +138,9 @@ class Menu(models.Model):
         blank=True,
     )
 
+    class Meta:
+        verbose_name_plural = 'Menu items'
+
     def __str__(self):
         return self.name
 
